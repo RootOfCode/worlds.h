@@ -2,7 +2,7 @@
 
 A single-header, pure-C software transactional memory (STM) library.
 
-Ported and extended from the [Common Lisp `worlds` package][lisp-worlds].
+Ported and extended from the [[Common Lisp `worlds` package][lisp-worlds]](https://gitlab.com/no-defun-allowed/cl-worlds).
 The core idea: instead of protecting shared state with locks, you *branch* the
 world, make your changes in isolation, then *commit* them back — with automatic
 conflict detection.  If two branches diverge on the same data, the second commit
