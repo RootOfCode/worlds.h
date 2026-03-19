@@ -2,7 +2,7 @@
 
 A single-header, pure-C software transactional memory (STM) library.
 
-Ported and extended from the [[Common Lisp `worlds` package][lisp-worlds]](https://gitlab.com/no-defun-allowed/cl-worlds).
+Ported and extended from the [Common Lisp `worlds` package][lisp-worlds].
 The core idea: instead of protecting shared state with locks, you *branch* the
 world, make your changes in isolation, then *commit* them back — with automatic
 conflict detection.  If two branches diverge on the same data, the second commit
@@ -288,8 +288,8 @@ make help       # list all targets
 
 ## Background and bug fixes
 
-This library is a port of the Common Lisp [worlds][lisp-worlds] package by
-[Nikodemus Siivola][author].  Two bugs in the original were corrected:
+This library is a port of the Common Lisp [worlds][lisp-worlds] package.
+Two bugs in the original were corrected:
 
 1. **Broken ancestor traversal** — `slot-value-using-class` iterated a loop
    variable `world` but always read from `*current-world*` (unchanged), so only
@@ -306,5 +306,4 @@ This library is a port of the Common Lisp [worlds][lisp-worlds] package by
 
 MIT — Copyright (c) 2024.  No warranty; do whatever you like.
 
-[lisp-worlds]: https://github.com/nikodemus/worlds
-[author]: https://github.com/nikodemus
+[lisp-worlds]: https://gitlab.com/no-defun-allowed/cl-worlds
