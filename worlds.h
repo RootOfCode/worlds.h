@@ -125,31 +125,31 @@
 #if defined(WORLDS_NO_THREADS)
 
     typedef int worlds__mutex_t;
-#   define worlds__mutex_init(m)    ((void)(m))
-#   define worlds__mutex_lock(m)    ((void)(m))
-#   define worlds__mutex_unlock(m)  ((void)(m))
-#   define worlds__mutex_destroy(m) ((void)(m))
+#define worlds__mutex_init(m)    ((void)(m))
+#define worlds__mutex_lock(m)    ((void)(m))
+#define worlds__mutex_unlock(m)  ((void)(m))
+#define worlds__mutex_destroy(m) ((void)(m))
 
 #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) \
       && !defined(__STDC_NO_THREADS__)
 
-#   include <threads.h>
+#include <threads.h>
     typedef mtx_t worlds__mutex_t;
     /* mtx_init returns thrd_success (0) on success; ignore return value with
        a comma-expression so we satisfy "expression statement" in C99 mode. */
-#   define worlds__mutex_init(m)    (mtx_init((m), mtx_plain))
-#   define worlds__mutex_lock(m)    (mtx_lock(m))
-#   define worlds__mutex_unlock(m)  (mtx_unlock(m))
-#   define worlds__mutex_destroy(m) (mtx_destroy(m))
+#define worlds__mutex_init(m)    (mtx_init((m), mtx_plain))
+#define worlds__mutex_lock(m)    (mtx_lock(m))
+#define worlds__mutex_unlock(m)  (mtx_unlock(m))
+#define worlds__mutex_destroy(m) (mtx_destroy(m))
 
 #else
     /* C99 or C11 without <threads.h> — single-threaded no-op locking.
      * Mutual exclusion is disabled; see the THREADING note in §1. */
     typedef int worlds__mutex_t;
-#   define worlds__mutex_init(m)    ((void)(m))
-#   define worlds__mutex_lock(m)    ((void)(m))
-#   define worlds__mutex_unlock(m)  ((void)(m))
-#   define worlds__mutex_destroy(m) ((void)(m))
+#define worlds__mutex_init(m)    ((void)(m))
+#define worlds__mutex_lock(m)    ((void)(m))
+#define worlds__mutex_unlock(m)  ((void)(m))
+#define worlds__mutex_destroy(m) ((void)(m))
 #endif
 
 /* ── Thread-local storage ───────────────────────────────────────────────────
@@ -159,14 +159,14 @@
  */
 
 #if defined(WORLDS_NO_THREADS)
-#   define WORLDS__TLS  /* nothing — plain global */
+#define WORLDS__TLS  /* nothing — plain global */
 #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) \
       && !defined(__STDC_NO_THREADS__)
-#   define WORLDS__TLS  _Thread_local
+#define WORLDS__TLS  _Thread_local
 #elif defined(__GNUC__) || defined(__clang__)
-#   define WORLDS__TLS  __thread
+#define WORLDS__TLS  __thread
 #else
-#   define WORLDS__TLS  /* plain global, not thread-safe */
+#define WORLDS__TLS  /* plain global, not thread-safe */
 #endif
 
 /* ════════════════════════════════════════════════════════════════════════════
